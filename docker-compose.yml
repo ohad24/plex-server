@@ -1,0 +1,19 @@
+---
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    # network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jerusalem
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - ./plex-config:/config
+      # - /path/to/tvseries:/tv
+      - ./my_movies_link:/movies
+    restart: unless-stopped
+    ports:
+      - 32400:32400  # localhost:32400/web
